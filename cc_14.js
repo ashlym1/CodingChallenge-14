@@ -6,7 +6,7 @@ function addTicket(customername, issueDescription,priorityLevel) {
     ticket.className="ticket-card"; // This assigns the class for syling 
 
     const nameHeading = document.createElement("h3"); // Heading for customer name
-    nameHeading.textContent = customerName;  
+    nameHeading.textContent = customername;  
 
     const issuePara = document.createElement("p"); // issue description
     issuePara.textContent = issueDescription;
