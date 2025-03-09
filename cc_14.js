@@ -1,7 +1,7 @@
 // Task 2: Adding support Tickets Dynamically :
 // selecting the container for support tickets 
 const ticketContainer = document.getElementById("ticketContainer");
-function addTicker(CustomerName, IssueDescription,priorityLevel) {
+function addTicket(customername, issueDescription,priorityLevel) {
     const ticket= document.createElement ("div"); // Creating the ticker card
     ticket.className="ticket-card"; // This assigns the class for syling 
 
