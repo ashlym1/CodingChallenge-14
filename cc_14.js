@@ -33,3 +33,19 @@ resolveButton.addEventListener("click",function() {
 // ** Test case 
 addTicket("Miriam Jennifer"," Warning: Website is not loading", "High");
 addTicket("Tito Blue", "Warning: Paymentnot accepted", "Medium")
+
+// Task 3 : Highlighting the high priotity ticket 
+function highlightHighPriorityTickets() {
+    let highPriorityTickets = document.querySelectorAll(".ticket-card"); // Selecting  all the  tickets
+    let ticketArray = Array.from(highPriorityTickets); // this converts the  nodeList to an array list 
+
+    ticketArray.forEach(ticket => {
+        let priorityLabel = ticket.querySelector("p:nth-of-type(2)"); // selecting the priority paragraph
+        if (priorityLabel.textContent.includes("High")) {
+            ticket.style.border = "2px solid red"; // this will highlight the high-priority tickets
+            ticket.style.backgroundColor = "#ffcccb"; // the color should be Light red background
+        }
+    });
+}
+//** Test Case:  running the function to high the high priority tiket
+highlightHighPriorityTickets()
