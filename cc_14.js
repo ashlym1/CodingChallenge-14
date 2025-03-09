@@ -65,3 +65,47 @@ resolveButton.addEventListener("click", function(event) {
     ticketContainer.removeChild(ticket); // Remove ticket
 });
 
+// Task 5 - Additional change: Incline Editing of support Tickets 
+function enableEditing( ticket){
+    // selcting the ticket detials
+    let nameHeading = ticker.querySelector("h3");
+    let issuePara= ticker.querySelector("p:nth-of-type(1)");
+    let priorityLabel= ticket.querySelector("p:nth-of-type(2)");
+    // inline editing feature : 
+    let nameInput = document.createElement("input");
+    nameInput.value = nameHeading.textContent;
+
+    let issueInput = document.createElement("input");
+    issueInput.value = issuePara.textContent;
+
+    let priorityInput = document.createElement("input");
+    priorityInput.value = priorityLabel.textContent.replace("Priority: ", "");
+
+    let saveButton = document.createElement("button");
+    saveButton.textContent = "Save";    
+    
+    // save 
+    saveButton.addEventListener("click",function(){
+        nameHeading.textContent=nameInput.value;
+        issuePara.textContent= issueInput.value;
+        priorityLabel.textContent= `Priority:${priorityInput.value}`;
+        //reverting the ticket back 
+        saveButton.addEventListener("click",function() {
+            nameHeading.textContent = nameInput.value; // Updated the  name
+            issuePara.textContent = issueInput.value; // Updated the  issue
+            priorityLabel.textContent = `Priority: ${priorityInput.value}`; // updated the  priority
+        
+            // reverting to  original static text
+            ticket.replaceChild(nameHeading, nameInput);
+            ticket.replaceChild(issuePara, issueInput);
+            ticket.replaceChild(priorityLabel, priorityInput);
+            ticket.replaceChild(editButton, saveButton); // Restore the  edit button
+        }
+        // Double clicking to edit 
+        ticketContainer.addEventListener("doubleclick",function(event){
+            if(event.target.classLoist.contains("ticket-card")) {
+                enableEditing (event.target);
+            }
+        });
+        
+
