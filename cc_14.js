@@ -49,3 +49,19 @@ function highlightHighPriorityTickets() {
 }
 //** Test Case:  running the function to high the high priority tiket
 highlightHighPriorityTickets()
+
+// Task 4- Implementign Ticket resolution with event Bubbling 
+ // Attaching the event listener to the ticket 
+ticketContainer.addEventListener("click", function(event) {
+    // attaching an event listner, this will show when a ticket was clicked
+    if (event.target.classList.contains("ticket-card")) {
+        console.log("Support ticket clicked!");
+    }
+});
+
+// Attach event listener to resolve button ( this is inside the addticket funtion)
+resolveButton.addEventListener("click", function(event) {
+    event.stopPropagation(); // Stop event bubbling
+    ticketContainer.removeChild(ticket); // Remove ticket
+});
+
