@@ -72,16 +72,13 @@ highlightHighPriorityTickets();
 
 // Task 4 - Implementing Ticket Resolution with Event Bubbling 
 ticketContainer.addEventListener("click", function(event) {
-    let card = event.target.closest(".ticket-card"); // Finds the closest card to avoid bubbling issues
+    let card = event.target.closest(".ticket-card"); // Find the closest ticket card
     if (card) {
-        let nameHeading = card.querySelector("h3"); // Trys  to find the name heading
-
-        //  this helps check  if nameHeading exists before accessing
-        if (nameHeading) {
-            console.log(`${nameHeading.textContent}'s card was clicked!`); // this logs when a card is clicked 
-        } else {
-            console.warn("No <h3> name heading found inside the ticket card.");
-        }
+        let nameHeading = card.querySelector("h3"); // Try to find the name heading
+        // Name will show up when clicked 
+        if (nameHeading && nameHeading.textContent.trim() !== "") {
+            console.log(`${nameHeading.textContent}'s card was clicked!`);
+        } 
     }
 });
 
