@@ -72,8 +72,10 @@ highlightHighPriorityTickets();
 
 // Task 4 - Implementing Ticket Resolution with Event Bubbling 
 ticketContainer.addEventListener("click", function(event) {
-    if (event.target.classList.contains("ticket-card")) {
-        console.log("Support ticket clicked!");
+    let card = event.target.closest(".ticket-card"); // Find the closest card to avoid bubbling issues
+    if (card) {
+        let name = card.querySelector("h3").textContent; // Get the employee's name
+        console.log(`${name}'s card was clicked!`);
     }
 });
 
@@ -106,6 +108,13 @@ function enableEditing(ticket) {
         nameHeading.textContent = nameInput.value; // Updated name
         issuePara.textContent = issueInput.value; // Updated issue
         priorityLabel.textContent = `Priority: ${priorityInput.value}`; // Updated priority
+        // Having the backgroud color change based on priority 
+      let newPriority = priorityInput.value.toLowerCase() ; // this is to format the words to lower case 
+      if (newPriority === "high") {
+        ticket.style.backgroundColor = "#ffcccb"; // Light red for high priority
+    } else {
+        ticket.style.backgroundColor = "#add8e6"; // Light blue for medium & low priority
+    }
 
         // Reverting back to static text 
         ticket.replaceChild(nameHeading, nameInput);  // Replacing the input with the static text 
