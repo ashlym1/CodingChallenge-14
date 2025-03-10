@@ -54,13 +54,15 @@ addTicket("Tito Blue", "Warning: Payment not accepted", "Medium");
 // Task 3 : Highlighting high-priority tickets 
 function highlightHighPriorityTickets() {
     let highPriorityTickets = document.querySelectorAll(".ticket-card"); // Selecting all the tickets
-    let ticketArray = Array.from(highPriorityTickets); // converting the nodeList to an array
+    let ticketArray = Array.from(highPriorityTickets); // Converting nodelist to an array
+    ticketArray.forEach(ticket => { // looping through the array
+        let priorityLabel = Array.from(ticket.querySelectorAll("p"))
+            .find(p => p.textContent.includes("Priority:")); // Finds the priority label
 
-    ticketArray.forEach(ticket => {
-        let priorityLabel = ticket.querySelector("p:nth-of-type(2)"); // Selecting priority 
-        if (priorityLabel.textContent.includes("High")) {
-            ticket.style.border = "2px solid red"; // highlights and tikets markerd "high-priority" 
-            ticket.style.backgroundColor = "#ffcccb"; // Light red background
+        // 
+        if (priorityLabel && priorityLabel.textContent.includes("High")) { 
+            ticket.style.border = "2px solid red"; // will highlight  high-priority tickets
+            ticket.style.backgroundColor = "#ffcccb"; // will be in  Light red 
         }
     });
 }
@@ -79,8 +81,9 @@ ticketContainer.addEventListener("click", function(event) {
 function enableEditing(ticket) {
     // Selecting ticket details elements 
     let nameHeading = ticket.querySelector("h3"); // Customer  name 
-    let issuePara = ticket.querySelector("p:nth-of-type(1)"); // Description of the issue 
-    let priorityLabel = ticket.querySelector("p:nth-of-type(2)"); // Priority Level 
+    let issuePara = Array.from(ticket.querySelectorAll("p")).find(p => !p.textContent.includes("Priority:"));  // Description of the issue 
+    let priorityLabel = Array.from(ticket.querySelectorAll("p"))
+         .find(p => p.textContent.includes("Priority:"));// Priority Level 
     let editButton = ticket.querySelector(".edit-button"); // Select the Edit button
 
     // Creating input fields for editing
