@@ -74,8 +74,14 @@ highlightHighPriorityTickets();
 ticketContainer.addEventListener("click", function(event) {
     let card = event.target.closest(".ticket-card"); // Find the closest card to avoid bubbling issues
     if (card) {
-        let name = card.querySelector("h3").textContent; // Get the employee's name
-        console.log(`${name}'s card was clicked!`);
+        let nameHeading = card.querySelector("h3").textContent; // Get the employee's name
+        // Checking if the name heading exists before acessing 
+        if(nameHeading){
+            let name= nameHeading.textConstent; // gets the customer name 
+        console.log(`${name}'s card was clicked!`); // logging which card was clicled 
+        }else{
+            console.warn("No <h3> name heading found inside the ticket card."); // Warning message. 
+    }
     }
 });
 
